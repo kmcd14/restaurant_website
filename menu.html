@@ -1,0 +1,381 @@
+<!DOCTYPE html> 
+
+<html lang="en">
+
+  <head>
+    <!-- Meta tags to tell the browser which character set to use, scale acoss devices, description etc. -->
+    <title>Menu</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Web Dev project">
+    <meta name="author" content="Katie Mc Donald">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to the styling for the navigation bar -->
+    <link href="style.css" rel="stylesheet">
+  </head>
+
+
+  <style>
+
+    /* Setting the font style and background colour */
+    body {
+      box-sizing: border-box;   /* Accounts for border and padding */
+      font-family: sans-serif;
+      background-color: #ffc9d9;
+    }
+
+
+    /* Setting max width, margin and padding for the container holding the menu */
+    .container {
+      max-width: 70%;
+      margin: 0 auto;
+      padding: 1.5em;
+    }
+
+    /* Setting font size and padding to the menu class */
+    .menu {
+      font-size: .90rem;
+      padding-top: 7%;
+    }
+
+    /* Adding padding and a solid green border to menu-group-heading class (Starters, Main Course, Desserts) */
+    .menu-group-heading {
+      padding-bottom: 1%;
+      border-bottom: .2em solid green;
+    }
+
+    /* Positioning, space and padding for the menu-group class */
+    .menu-group {
+      display: grid;               /* Selecting a grid layout to build the menu */
+      grid-template-columns: 1em;
+      gap: 1.5em;
+      padding: 4% 0;             
+    }
+
+    /* menu-item class will grow or shrink to fit available space */
+    .menu-item {
+      display: flex;  
+    }
+
+    /* Height, width and margin for the images in the menu-item-img class */
+    .menu-item-img {
+      width: 5vw;
+      height:10vh;
+      flex-shrink: 0;
+      object-fit: cover;    /* How image should scale */
+      margin-right: 1.5em;
+    }
+
+     /* menu-item-text class will grow to fit available space */
+    .menu-item-text {
+      flex-grow: 1;
+    }
+
+     /* Setting flexible display, alignment and margin for menu-item-heading class  */
+    .menu-item-heading {
+      display: flex;
+      justify-content: space-between;
+      margin: 0;
+      color: green;       /* Font colour */
+      font-weight: bolder;  /* Bold text */
+    }
+
+    /* Setting text alignment and space between lines for menu-item-desc class */
+    .menu-item-desc {
+      line-height: 1.6;
+      text-align: left;
+      font-weight: bold;  /* Bold text */
+    }
+
+    /* Setting the number (and the widths) of columns for the grid layout */
+    .menu-group {
+     grid-template-columns: repeat(2, 1fr); /* fr = fractional unit */
+    }
+
+ 
+  </style>
+  
+  <header>
+        <!-- Navigation menu at the top of the page -->
+        <nav class="myNav">                                 
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="dom.html">DOM</a></li>
+            <li><a href="stats.html">Stats</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+          </ul>
+        </nav>
+  </header>
+
+  <body>
+    <!-- Main container  -->
+    <main class="container">
+      <!-- Sub container to hold the menu -->
+      <div class="menu">
+          
+          <h2 class="menu-group-heading">Starters</h2>
+          <!-- Start of container to hold the Starters -->
+          <div class="menu-group">
+            <div class="menu-item">
+            <!-- Image of the dish -->
+            <img
+              src="images\menu.jpg"
+              alt="Bruschetta"
+              class="menu-item-img"
+            />
+              <!-- Information about the dish -->
+              <div class="menu-item-text">
+                <h3 class="menu-item-heading">
+                  <span class="menu-item-name">Bruschetta with aged cashew cheese
+                  </span>
+                  <span class="menu-item-price">€5.50</span>
+                </h3>
+                <p class="menu-item-desc">
+                Toasted Bread with Tomatoes, Olives and Aged Cashew Cheese.
+                </p>
+              </div>
+            </div>
+            <!-- Information on the next starter -->
+            <div class="menu-item">
+            <!-- Image of the dish -->
+            <img
+              src="images\menu-2.jpg"
+              alt="Risotto"
+              class="menu-item-img"
+            />
+              <div class="menu-item-text">
+                <h3 class="menu-item-heading">
+                  <span class="menu-item-name">Saffron Risotto (GF)</span>
+                  <span class="menu-item-price">€8.95</span>
+                </h3>
+                <p class="menu-item-desc">
+                  With Green Pea, Spring Onions and Sour Cream alternative.
+                </p>
+              </div>
+            </div>
+            <!-- Information on the next starter -->
+            <div class="menu-item">
+              <!-- Image of the dish -->
+              <img
+               src="images\gallery.jpg"
+               alt="Soup"
+               class="menu-item-img"
+              />
+              <div class="menu-item-text">
+                <h3 class="menu-item-heading">
+                  <span class="menu-item-name">Soup</span>
+                  <span class="menu-item-price">€4.50</span>
+                </h3>
+                <p class="menu-item-desc">
+                  Creamy Pumpkin-Coconut-Peanut Butter Purée Soup with Spicy Sichuan oil. 
+              </div>
+            </div>
+            <!-- Information on the next starter -->
+            <div class="menu-item">
+              <!-- Image of the dish -->
+              <img
+                src="images\menu-3.jpg"
+                alt="Platter"
+                class="menu-item-img"
+              />
+              <div class="menu-item-text">
+                <h3 class="menu-item-heading">
+                  <span class="menu-item-name">Snack Platter for Two</span>
+                  <span class="menu-item-price">€12.90</span>
+                </h3>
+                <p class="menu-item-desc">
+                  White Bean & Jerusalem Artichoke Hummus, Muhammara Spread, Mushroom Pâté,” “Feta Cheese,” Spicy
+                  “Cheddar,” Olives, Roasted Almonds, Sourdough Bread, Papadam, Smoked Plum.
+                </p>
+              </div>
+            </div>
+          </div> <!--End of the starter menu group -->
+
+           
+
+        
+          <h2 class="menu-group-heading">Main Course</h2>
+          <!-- Start of container to hold the Main Courses -->
+          <div class="menu-group">
+            <!-- First Main Course dish -->
+            <div class="menu-item">
+              <!-- Image of the dish -->
+              <img
+                src="images\menu-4.jpg"
+                alt="Tagliatelle"
+                class="menu-item-img"
+              />
+              <!-- Information about the dish -->
+              <div class="menu-item-text">
+                <h3 class="menu-item-heading">
+                  <span class="menu-item-name">Homemade Tagliatelle Mushroom and Truffle
+                  </span>
+                  <span class="menu-item-price">€14.95</span>
+                </h3>
+                <p class="menu-item-desc">
+                  Cream of Mushrooms with Parsely, Truffle and Parmesan alternative.
+                </p>
+              </div>
+            </div>
+            <!-- Next Main Course -->
+            <div class="menu-item">
+              <!-- Image of the dish -->
+              <img
+                src="images\menu-5.jpg"
+                alt="Pho"
+                class="menu-item-img"
+              />
+              <!-- Information about the dish -->
+              <div class="menu-item-text">
+                <h3 class="menu-item-heading">
+                  <span class="menu-item-name">Pho</span>
+                  <span class="menu-item-price">€13.95</span>
+                </h3>
+                <p class="menu-item-desc">
+                  Hoisin Glazed tofu, Shiitake Mushroom, Pak Choi, thick Rice Noodles, Thai Basil, Mint, Coriander, homemade Pho Broth
+                </p>
+              </div>
+            </div> 
+            <!-- Next Main Course -->
+            <div class="menu-item">
+              <!-- Image of the dish -->
+              <img
+                src="images\menu-6.jpg"
+                alt="Tagine"
+                class="menu-item-img"
+              />
+              <!-- Information about the dish -->
+              <div class="menu-item-text">
+                <h3 class="menu-item-heading">
+                  <span class="menu-item-name">Roasted Fennel & Chickpea Tagine</span>
+                  <span class="menu-item-price">€17.95</span>
+                </h3>
+                <p class="menu-item-desc">
+                  with Cous Cous, Roasted Pepper Harissa, Yogurt Dressing and Handmade Flatbread.
+              </div>
+            </div>
+            <!-- Next Main Course -->
+            <div class="menu-item">
+              <!-- Image of the dish -->
+              <img
+                src="images\menu-7.jpg"
+                alt="Medailion"
+                class="menu-item-img"
+              />
+              <!-- Information about the dish -->
+              <div class="menu-item-text">
+                <h3 class="menu-item-heading">
+                  <span class="menu-item-name">Peppercon Mustard 'Beef' Medailion</span>
+                  <span class="menu-item-price">€17.95</span>
+                </h3>
+                <p class="menu-item-desc">
+                  Mustard crusted Seitan Medallion with Lemon Herb Hasselback Potato, Gremolata Carrots, BBQ Brussel Sprouts, Peppercorn Gravy
+              </div>
+          </div>
+          <!-- Next Main Course -->
+          <div class="menu-item">
+            <!-- Image of the dish -->
+            <img
+              src="images\gallery-5.jpg"
+              alt="Noodle Soup"
+              class="menu-item-img"
+            />
+            <!-- Information about the dish -->
+            <div class="menu-item-text">
+              <h3 class="menu-item-heading">
+                <span class="menu-item-name">Udon Noodle Soup</span>
+                <span class="menu-item-price">€13.95</span>
+              </h3>
+              <p class="menu-item-desc">
+                slightly Spicy Udon Noodle Soup with Smoked Tofu and Broccoli
+            </div>
+          </div>
+          <!-- Next Main Course -->
+          <div class="menu-item">
+            <!-- Image of the dish -->  
+            <img
+              src="images\menu-8.jpg"
+              alt="Pulled Jackfruit"
+              class="menu-item-img"
+            />
+            <!-- Information about the dish -->
+            <div class="menu-item-text">
+              <h3 class="menu-item-heading">
+                <span class="menu-item-name">Pulled Jackfruit with Rice, Beans and fried sweet Plantains</span>
+                <span class="menu-item-price">€17.95</span>
+              </h3>
+              <p class="menu-item-desc">
+                Sweet and Smokey Jackfruit with Tomato, zesty Bell Peppers and caramelised Onions served with Rice, Black Beans and sweet fried Plantains.
+            </div>
+          </div>
+        </div>  <!--End of the Main Course menu group -->
+
+
+        <h2 class="menu-group-heading">Desserts</h2>
+        <!-- Start of container to hold Desserts -->
+        <div class="menu-group">
+          <!-- First dessert -->  
+          <div class="menu-item">
+          <!-- Image of the dish -->  
+            <img
+                src="images\menu-9.jpg"
+                alt="Cheesecake"
+                class="menu-item-img"
+            />
+            <!-- Information about the dish -->
+            <div class="menu-item-text">
+              <h3 class="menu-item-heading">
+                <span class="menu-item-name">Oreo “cheesecake
+                </span>
+                <span class="menu-item-price">€7.50</span>
+              </h3>
+              <p class="menu-item-desc">
+                Ice cold Oreo “Cheesecake” with Plum Cardamom Jam 
+              </p>
+            </div>
+          </div>
+           <!-- Next dessert -->  
+          <div class="menu-item">
+            <!-- Image of the dish -->  
+            <img
+              src="images\menu-10.jpg"
+              alt="Cookie Dough"
+              class="menu-item-img"
+            />
+            <!-- Information about the dish -->
+            <div class="menu-item-text">
+              <h3 class="menu-item-heading">
+                <span class="menu-item-name">Cookie Dough</span>
+                <span class="menu-item-price">€8.95</span>
+              </h3>
+              <p class="menu-item-desc">
+                Griddled Cookie Dough, Salty Hazelnut Praline, Pistachio & Cardamom powder and Vanilla Ice Cream.
+              </p>
+            </div>
+          </div>
+           <!-- Next Dessert -->
+          <div class="menu-item">
+            <!-- Image of the dish -->  
+            <img
+              src="images\menu-11.png"
+              alt="Brownie"
+              class="menu-item-img"
+            />
+            <!-- Information about the dish -->
+            <div class="menu-item-text">
+              <h3 class="menu-item-heading">
+                <span class="menu-item-name">Salted Caramel Brownie</span>
+                <span class="menu-item-price">€4.50</span>
+              </h3>
+              <p class="menu-item-desc">
+                Warm Salted Caramel Brownie with Vanilla Ice Cream. 
+            </div>
+          </div> 
+        </div>     <!--End of Dessert menu group -->
+      </div>       <!--End of Menu Container -->
+    </main>        <!--End of Main Container -->
+  </body>
+ </html>

@@ -1,0 +1,546 @@
+<!DOCTYPE html> 
+<html lang="en">
+
+  <head>
+    <!-- Meta tags to tell the browser which character set to use, scale acoss devices, description etc. -->
+    <title>Stats</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Web Dev project">
+    <meta name="author" content="Katie Mc Donald">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to the styling for the navigation bar -->
+    <link href="style.css" rel="stylesheet">
+    <!-- Link to D3 script -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+  </head>
+
+  <style>
+    
+   /* Setting the sizing applied to whole page */
+   * {
+      box-sizing: border-box;  /* Accounts for border and padding */ 
+    }
+
+
+    /* Styling the section class container, height, space between lines, font size and colour */
+    section {
+      color: black;
+      height: 100%;
+      font-family: sans-serif;
+      font-size: 1rem;
+      line-height: 120%;
+    }
+
+
+    /* Styling class for left-half of the section container */
+    .left-half {
+      float: left;                                    /* Floats to the left of section container */
+      width: 50%;                                     /* i.e half of the section container */
+      height: 100vh;                                  /* Setting height */
+      padding-top: 7%;                                /* Setting top padding */
+	    padding-left: 2%;                         	    /* Setting left padding*/
+      padding-right: 2%;                        	    /* Setting right padding */
+      background-color: rgba(0, 128, 0, 0.179);     /* Setting background colour */
+      overflow: scroll;
+    }
+
+
+    /* Styling class for right-half of the section container */
+    .right-half {
+      float: right;                             /* Floats to the right of section container */
+      width: 50%;                               /* i.e half of the section container */
+      height: 100vh;                            /* Setting height */
+      padding-top: 7%;                          /* Setting top padding */
+	    padding-left: 2%;                         /* Setting left padding*/
+      padding-right: 2%;                        /* Setting right padding */
+      background-color: #ffc9d9;              /* Setting background colour */
+      overflow: scroll;
+    }
+  
+
+    /* Setting font size and centering them same line for all labels */
+     label {
+        display:inline-block;
+        font-size: 1rem; 
+      }
+  
+
+    /* Styling for the buttons */
+    button {
+      padding:0.2em 1.3em;                        /* Adding padding */
+      height: 5.5vh;                              /* Button height */
+      border-radius: 3em;                         /* Gives buttons have curved edges */
+      font-size: 1rem;                            /* Font size */
+      color:#ffffff;                            /* Font colour */
+      background-color: black;                  /* Setting background colour */
+      cursor: pointer;                            /* Mouse arrow turns to a pointer over the button */
+    }
+
+    /* The rectangles (bars) in the d3 chart change colour to black when the mouse hovers over them */
+    rect:hover {
+      fill: black;
+    }
+
+</style>
+
+ <header>
+    <!-- Navigation menu at the top of the page -->
+    <nav class="myNav">                                 
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="dom.html">DOM</a></li>
+        <li><a href="stats.html">Stats</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <body>
+    <!-- Main container -->
+    <section>
+      <!-- Sub container for the left-half of the main container -->
+      <div class="left-half">
+        <h2>Breakdown of Bookings for 2021</h2>
+        <br>
+        <p>The below is an example of a D3 data visualisation from a csv file.</p>
+        <br>
+        <br>
+        <!-- Label for the drop down menu to select chart size -->
+        <label for="chartHeight"><p>Select</p><p>Chart Size:</p></label>
+        <select id="chartHeight">
+          <!-- The 3 size options -->
+          <option value="200">200 Pixels</option>  
+          <option value="300">300 Pixels</option>
+          <option value="500">500 Pixels</option>
+        </select>
+        <!-- Label for the colour picker where the user can decide the colour of the bars -->
+        <label for="colourPicker"><p>Select</p><p>Chart Colour:</p></label>
+        <!-- The colour picker -->
+        <input type="color" id="colourPicker"  value="#f098e5">
+        <!-- Label for the drop down menu to select animation speed -->
+        <label for="duration"><p>Select</p><p>Animation Speed:</p></label>
+        <select id="duration">
+          <!-- The 3 speed options -->
+          <option value="1000">1 second</option>
+          <option value="3000">3 seconds</option>
+          <option value="5000">5 seconds</option>
+        </select>
+        <!-- When clicked activated drawChart() function which generates a bar chart based on users above selections -->
+        <button id="draw" onclick="drawChart()">Draw Chart</button>
+        <br>
+        <br>
+        <br>
+        <!-- Div which stores the output of the drawChart() function -->
+        <div id="myDiv"></div> 
+      </div> <!-- End of left-half container -->
+
+
+      <!-- Sub container for the right-half of the main container -->
+      <div class="right-half">
+        <h2>Top Factors that Make Customers Return to a Restaurant in 2020</h2>
+        <br>
+        <p>The below is an example of a D3 data visualisation from an array.</p>
+        <br>
+        <br>
+        <!-- Label for the drop down menu to select chart size -->
+        <label for="chartHeight2"><p>Select</p><p>Chart Size:</p></label>
+        <!-- creating a place to hold the chart size picker where the user can decide the size of the graph-->
+        <select id="chartHeight2">
+            <!-- The 3 size options -->
+            <option value="200">200 Pixels</option>  
+            <option value="300">300 Pixels</option>
+            <option value="500">500 Pixels</option>
+        </select>
+         <!-- Label for the colour picker where the user can decide the colour of the bars -->
+        <label for="colourPicker2"><p>Select</p><p>Chart Colour:</p></label>
+        <!-- The colour picker -->
+        <input type="color" id="colourPicker2"  value="#1b6303">
+        <!-- Label for the drop down menu to select animation speed -->
+        <label for="duration2"><p>Select</p><p>Animation Speed:</p></label>
+        <select id="duration2">
+          <!-- The 3 speed options -->
+          <option value="1000">1 second</option>
+          <option value="3000">3 seconds</option>
+          <option value="5000">5 seconds</option>
+        </select>
+        <!-- When clicked activated drawChart2() function which generates a bar chart based on users above selections -->
+        <button class="draw2" onclick="drawChart2()">Draw Chart</button>
+        <br>
+        <br>
+        <br>
+        <!-- Div which stores the output of the drawChart2() function -->
+        <div id="svg_div"></div>
+      </div> <!-- End of left-half container -->
+    </section> <!-- End of main container -->
+  </body>
+
+  <script>
+
+    /////////// CHART FROM CSV FILE //////////////////
+
+    // Function to draw chart in left-half
+    function drawChart(){
+      // Loading data from .csv file
+      d3.csv("bookings.csv").then(function(data){
+        // Printing data to console
+        console.log(data);
+        
+
+      // Declare variable for height based on user input to chartHeight in left-half
+      var height = document.getElementById('chartHeight').value;
+      // Declare variable for width
+      var width = 600;
+      // Declare variable for the lenght of the array (number of elements)
+      var dataCount = data.length;
+      // Variable for width between bars
+      var gap = 3;
+      // Declare variable for bar colours based on user input to colourPicker in left-half
+      var chartColour = document.getElementById('colourPicker').value;
+      // Declare variable for animation speed based on user input to duration in left-half
+      var speed = document.getElementById('duration').value;
+      
+
+
+
+      // Convert to numbers as values are in string format
+      data.forEach(function (d){
+        d.Bookings = Number(d.Bookings);
+      })
+      
+    
+      // Create a scale for y using the max value in Bookings 
+      var yScale = d3.scaleLinear()
+        .domain([0, d3.max(data, function(d){
+          return d.Bookings;
+        })])
+        // yScale goes from 0-700 rather than 700-0
+        .range([height, 0]);
+
+
+      // Create a scale for x based on Month 
+      var xScale = d3.scaleBand()
+        .domain(data.map (function(d){
+        return d.Month;
+      }))
+        // xScale goes from Jan-Dec rather than Dec-Jan
+        .range([0, width]);
+
+      
+      // Create an x-axis
+      var xAxis = d3.axisBottom()
+        .scale(xScale);
+    
+
+      // Create a y-axis
+      var yAxis = d3.axisLeft()
+        .scale(yScale);
+      
+      // Prevent multiple charts, a "fresh" one is generated in #myDiv each time
+      d3.select('#myDiv').selectAll('*').remove();
+
+      // Create an SVG Container in #myDiv
+      var svgContainer = d3.select("#myDiv").append("svg")
+        .attr("width", 1000)
+        .attr("height", 1000)
+        .attr("overflow", "visible");
+
+
+      // Declare a variable which holds a created rectangle (bars)
+      var myRectangle = svgContainer.selectAll("rect")
+        .data(data);
+
+
+      // Adding Attributes to myRectangle 
+      myRectangle.enter()
+        .append("rect")
+          // Starting position of bars (rectangles) on x-axis
+          .attr('x', function(d, i){
+            return  (i*width/dataCount);
+          })
+          // Starting position of transition on y-axis
+          .attr('y', height)
+          // Bars are coloured black at the beginning of animation 
+          .attr('fill', "black")
+          .transition()
+            // Duration of transition is based on user input to duration in left-half
+            .duration(speed) 
+            // Smoothing animation
+            .ease(d3.easeLinear)
+            // End of transition
+
+          // End position on x-axis
+          .attr("x", function(d, i) {
+            return 50 + (i*width/dataCount);
+          })
+          // End position on y-axis
+          .attr("y", function (d) {
+              return yScale(d.Bookings);
+            })
+          // Space between bars  
+          .attr("width", (width/dataCount - gap))
+          // Height based on user input to chartHeight in left-half is scaled to yScale so bars are scalled to range of Bookings data
+          .attr("height", function (d){
+            return height - yScale(d.Bookings);
+          })
+		      // Final colour of bars is based on user input to colourPicker in left-half
+          .attr("fill", chartColour)
+         
+          
+        
+      // Create labels
+      var mylabel = svgContainer.selectAll("text")
+        .data(data);
+
+      // Adding labels
+      mylabel.enter()
+        .append("text")
+          // Starting position of transition on x-axis
+          .attr("x", function(d) {
+            return 20 - (width/dataCount) ;
+          })
+          // Starting position of transition on y-axis
+          .attr("y", function (d) {
+            return yScale(d.Bookings) - 30 ;
+          })
+          .attr("transform", "translate (20,0)")
+          // Align
+          .attr("text-anchor", "middle")
+          // Font size
+          .attr("font-size", "10px")
+          // Bold
+          .style('stroke', '#000')
+          // Font colour
+          .attr("fill", "black")
+          // Return data with the vaules 
+          .text(function(d){
+            return d.Bookings;
+          })  
+          // Applying transition
+          .transition()
+            // Duration of transition is based on user input to duration in left-half
+            .duration(speed)
+            // Smoothing animation
+            .ease(d3.easeLinear)
+          // End position of lables on x-axis
+          .attr("x", function(d, i) {
+            return  50+ (i*width/dataCount);
+          })
+          // End position of lables on y-axis
+          .attr("y", function (d) {
+            return yScale(d.Bookings) - 5;
+          })
+           
+        
+      // Add axis' last so they are on top of the bars      
+	    // Add y-axis to the SVG   
+      svgContainer.append("g")
+        .attr("transform", "translate (45, 0)")
+        .call (yAxis);
+          
+      // Add x-axis to the SVG   
+      svgContainer.append("g")
+        .attr("transform", "translate (50," + height + ")")
+        .call (xAxis)
+        .selectAll ("text")
+			    // Rotating x-axis labels
+          .attr("transform","rotate(60)")
+		      // Align 
+          .attr("text-anchor", "start")
+		      // Bold
+          .style('stroke', '#000')
+		      // Distance from x-axis
+          .attr("x", "9")
+		      // Distance from y-axis
+          .attr("y", "3")
+      })
+    }
+    
+
+   
+    /////////// CHART FROM ARRAY //////////////////
+
+
+    // Function to draw chart in right-half
+    function drawChart2(){
+      // Declare variable for height based on user input to chartHeight2 in right-half
+      var height = document.getElementById("chartHeight2").value;
+      // Declare variable for width
+      var width = 650;
+	    // Declare variable horizontal offset
+      var xOffset = 100;
+	    // Declare variable for vertical offset
+      var yOffset = 10;
+      // Declare variable for width of bars
+      var barWidth = 45;
+      // Declare variable for gap between bars
+      var gap = 3;
+      // Declare variable for animation speed based on user input to duration2 in right-half
+      var speed = document.getElementById('duration2').value;
+      // Declare variable for bar colours based on user input to colourPicker2 in right-half
+      var chartColour = document.getElementById("colourPicker2").value;
+
+
+      // Create an array to pass into function
+      // Values taken from: https://financesonline.com/restaurant-statistics/
+      var value = [500, 430, 310, 270, 220, 210, 190, 170, 160, 120, 100, 90, 80];
+      var key = ["Food Quaility", "Cleanliness & Safety", "Value", "Menu Options", "Desire To Support Local", "Staff Friendliness", "Proximity", "Order Ahead", "Offers", "On Delivery Apps", "Social Media/Marketing", "loyalty Program", "Events"];
+
+    
+        // Create a scale for x
+        var xScale = d3.scaleBand()
+        .domain(key.map(function(d){
+          return d;
+        }))  
+        // Biggest value "Food Quaility" is first
+        .range([0,width]);
+
+
+      // Create a scale for y based on max value in value array
+      var yScale = d3.scaleLinear()
+        .domain([0,d3.max(value)])
+        // yScale goes from 0-500 rather than 500-0
+        .range([height,0]);
+
+      
+      // Create an x-axis
+      var xAxis = d3.axisBottom()
+        .scale(xScale);  
+
+
+      // Create a y-axis  
+      var yAxis = d3.axisLeft()
+        .scale(yScale);
+        
+        
+      // Prevent multiple charts, a "fresh" one is generated in #myDiv each time
+      d3.select("#svg_div").selectAll("*").remove();  
+
+
+
+      // Create an SVG Container in #svg_div
+      var svgContainer = d3.select("#svg_div").append("svg")
+        .attr("width", 1000)
+        .attr("height", 1000)
+        .attr("overflow", "visible");
+
+        
+      // Declare a variable which holds a created rectangle (bars)
+      var myRectangle = svgContainer.selectAll("rect")
+        .data(value);
+
+
+      // Adding Attributes to myRectangle 
+      myRectangle.enter()
+        .append("rect")
+          // Starting posistion of bars (rectangles) on x-axis
+          .attr("x", function(d,i){
+            return xOffset + (i*50);
+          })
+		      // Starting position of transition on y-axis, height based on user input to chartHeight2 in right-half
+          .attr("y", height)
+          // Width of bars and gap between them
+          .attr("width", barWidth - gap)
+          // Bars are coloured black at the beginning of animation 
+          .attr("fill", "black")
+          // Apply transition
+          .transition()
+			      // Duration of transition is based on user input to duration in right-half
+            .duration(speed)
+            // Smoothing animation
+            .ease(d3.easeLinear)
+            // End of transition
+
+          // End position on x-axis
+          .attr("x", function(d,i){
+            return xOffset + (i*50);
+          })
+          // End position on y-axis
+          .attr("y",function(d){
+            return yScale(d);
+          })
+		      // Height based on user input to chartHeight2 in right-half, scaled to yScale so bars are scaled to range data
+          .attr("height", function(d){
+            return height - yScale(d );
+          })
+          // Width of bars
+          .attr("width", barWidth )
+		      // Final colour of bars is based on user input to colourPicker2 in right-half
+          .attr("fill", chartColour);
+
+
+
+      // Create labels
+      var myLabels= svgContainer.selectAll("text")
+        .data(value);
+
+
+	    // Adding the labels
+      myLabels.enter()
+        .append("text")
+          // Starting position of transition on x-axis
+          .attr("x", function(d,i){
+            return xOffset + (i);
+          })
+		      // Starting position of transition on x-axis, height based on user input to chartHeight2 in right-half
+          .attr("y", height)
+		      // Font size
+          .attr("font-size", "10px")
+		      // Bold
+          .style('stroke', '#000')
+          // Return data with the vaules 
+          .text(function(d){
+            return d;
+          })  
+          // Apply transition
+          .transition()
+			      // Duration of transition is based on user input to duration in right-half
+            .duration(speed)
+          // End position of lables on x-axis
+          .attr("x", function(d,i){
+            return xOffset + (barWidth/2) + (i*50);
+          })
+		      // End position of lables on y-axis
+          .attr("y", function(d){
+            return yScale(d) + yOffset - 15;
+          })
+		       // Align
+          .attr("text-anchor", "middle")
+		      // Font size
+          .attr("font-size", "10px")
+		      // Return data with the vaules 
+          .text(function(d){
+            return d;
+          }) 
+
+          
+        // Add axis' last so they are on top of the bars  
+        // Add the y-axis to SVG   
+        svgContainer.append("g")  
+          // Moving y-axis
+          .attr("transform", "translate(" + (xOffset - 5) + ",0)")
+          .call(yAxis);  
+        // Adding the x-axis to SVG   
+        svgContainer.append("g")
+          // translate is related to the height of the chart and the start point of the first rectangle
+          .attr("transform", "translate(" + xOffset + "," + height + ")")
+          .call(xAxis)
+          // Adding Attributes to axis + their data
+          .selectAll("text")
+            // Rotating x-axis labels
+            .attr("transform", "rotate(60)")
+            // Align
+            .attr("text-anchor", "start")
+			      // Bold
+            .style('stroke', '#000')
+			      // Distance from x-axis
+            .attr("x", "9")
+			      // Distance from y-axis
+            .attr("y","3");        
+    }  
+    
+  </script>
+</html>

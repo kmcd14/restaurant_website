@@ -1,0 +1,94 @@
+<!DOCTYPE html> 
+
+<html lang="en">
+
+	<head>
+		<!-- Meta tags to tell the browser which character set to use, scale acoss devices, description etc. -->
+		<title>Home Page</title>
+		<meta charset="UTF-8">
+		<meta name="description" content="Web Dev project">
+		<meta name="author" content="Katie Mc Donald">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Link to the styling for the navigation bar -->
+		<link href="style.css" rel="stylesheet">
+	</head>
+
+	<style>
+
+		/* Setting the font style, color and adding an image to the background */
+		body {
+			font-family: sans-serif;
+			background: url(images/background-2.jpg) no-repeat;
+			background-size: cover;
+			color: white;
+		}
+
+		/* Positioning the main container - moving it below the navigation bar */
+		.container {
+			padding-top: 10%;
+		}
+
+
+		/* Styling for text_box */
+		#text_box {
+			padding: 3em 0;                              /* Adding padding */
+			background-color: rgba(44, 38, 38, 0.879); /* text_box colour */
+			width: 50vw;                                 /* Width of the text_box */
+			margin-left : 25vw;                          /* Setting margin */
+			box-shadow: 0px 0px 5px 2px black;         /* Adding drop shadow */
+		}
+
+		/* Change the h1 font size in the text_box */
+		#text_box h1 {
+			font-size: 1.7rem;
+			font-weight: bolder;
+		} 
+
+		/* Change text_box paragraph font size, adding padding to the left and right and space between each line */
+		#text_box p {
+			padding-left: 3.5%;
+			padding-right: 3.5%;
+			font-size: 1rem;
+			line-height: 150%;
+			font-weight: bold;
+		}
+
+	</style>
+
+
+	<header>
+		<!-- Navigation menu at the top of the page -->
+		<nav class="myNav">                                 
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="about.html">About</a></li>
+				<li><a href="menu.html">Menu</a></li>
+				<li><a href="gallery.html">Gallery</a></li>
+				<li><a href="dom.html">DOM</a></li>
+				<li><a href="stats.html">Stats</a></li>
+				<li><a href="contact.html">Contact</a></li>
+				<li><a href="login.html">Login</a></li>
+			</ul>
+		</nav>
+	</header>
+		
+	<body>
+
+	<!-- Main container  -->
+		<div class="container">
+		<!-- Sub container to hold the text -->
+			<div id="text_box" >
+				<h1>Our Story</h1>
+				<br/>
+				<p>Planted is the first vegan restaurant in Dundalk, Co.Louth! We opened our doors in April 2014.</p>
+				<br/>
+				<p>We're a small and cozy vegan restaurant in the center of Dundalk. 
+				Our restaurant offers an international a la carte menu with dishes from 
+				all over the world both for lunch and dinner. And it is 100% vegan meaning
+				everything is free from dairy, egg and meat. Reservations are highly recommended. 
+				And not just a day earlier - the earlier the better. It's never too early to book a table.</p>
+			</div> <!-- End of Main container  -->
+		</div> <!-- End of sub container  -->
+	</body>
+	
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <!-- Meta tags to tell the browser which character set to use, scale acoss devices, description etc. -->
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Web Dev project">
+    <meta name="author" content="Katie Mc Donald">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to the styling for the navigation bar -->
+    <link href="style.css" rel="stylesheet">
+  </head>
+
+  <style>
+    
+     /* Setting the font style, color and adding an image to the background */
+     body {
+      font-family: sans-serif;
+      color:white;
+      background: url(images/background-2.jpg) no-repeat;
+      background-size: cover;
+    }
+
+
+    /* Positioning the main container - moving it below the navigation bar */
+    .container {   
+      padding-top: 10%;   
+    }
+
+
+    /* Styling class the main-holder id */
+    #main-holder {
+      padding: 2% 0;                                  /* Adding padding */
+      display: grid;                                  /* Selecting a grid layout order elements */
+		  width: 40vw;                                    /* Setting width */
+		  margin-left: 28vw;                              /* Setting margin */
+      justify-items: center;                          /* Justifying items on the inline axis*/
+      background-color: rgba(44, 38, 38, 0.879);    /* Setting background colour of main-holder */
+      box-shadow: 0px 0px 5px 2px black;            /* Adding drop shadow to main-holder*/
+      color: rgb(241, 241, 241);                    /* Setting font colour */
+    }
+
+
+    /* Adding padding to the bottom of the h1 tagged text in the main-holder to make space for the error message */
+    #main-holder h1{
+      padding-bottom: 2%;
+    }
+
+ 
+    /* Styling for the container which holds an error message */
+    #login-error-msg-holder {
+      width: 80%;               /* Setting width */
+      height: 75%;              /* Setting height */
+      display: grid;            /* Selecting a grid layout order elements */
+      justify-items: center;    /* Justifying items on the inline axis*/
+    }
+
+
+    /* Styling for the error message within #login-error-msg-holder */
+    #login-error-msg {
+      width: 50%;                       /* Setting width*/
+      text-align: center;               /* Aligning text*/
+      padding-top: 3%;                  /* Setting top padding*/
+      padding: .5%;                     /* Adding padding */
+      font-size: .75rem;                /* Font size */
+      font-weight: bold;                /* Bolding text */
+      color: rgb(128, 0, 0);                   /* Font colour */
+      border: .15rem solid rgb(128, 0, 0);     /* Soild green border around text */
+      background-color: #e58f8f;      /* Setting background colour */
+      opacity: 0;                       /* Setting opacity as 0 so it is not visable */
+    }
+
+    
+    /* Styling and positioning for the login-form */
+    #login-form {
+      display: grid;
+      justify-items: center;  
+    }
+
+    /* Styling the input fields of the login-form */
+    .login-form-field {
+      border: .13rem solid green;                       /* Adding soild green border  */
+      margin-bottom: 10%;                                 /* Setting margin */
+      padding: 5%;                                        /* Adding padding */
+    }
+
+
+     /* Styling the font colour of the placeholders within the input fields as black */
+     .login-form-field::placeholder {
+      color: black;
+    }
+
+    /* Styling for submit button */
+    #login-form-submit {
+      padding:0.3em 1.2em;                          /* Adding padding */
+      margin:0 0.1em 0.1em 0;                       /* Adding a margin */
+      height: 5vh;                                  /* Button height */
+      border:0.16em solid rgba(255,255,255,0);    /* Solid border */
+      border-radius:2em;                            /* Gives buttons have curved edges */
+      font-size: 1rem;                              /* Font size */
+      color:#ffffff;                              /* Font colour */
+      background-color: green;                    /* Setting background colour of button */
+      text-align:center;                            /* Centering text */
+      cursor: pointer;                              /* Mouse arrow turns to a pointer over the button */      
+    }
+        
+  </style>
+
+ <header>
+    <!-- Navigation menu at the top of the page -->
+    <nav class="myNav">                                 
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+		    <li><a href="menu.html">Menu</a></li>
+		    <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="dom.html">DOM</a></li>
+        <li><a href="stats.html">Stats</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+ 
+  <body>
+     <!-- Main container -->
+    <div class="container">
+      <!-- Sub container to hold the login-form -->
+      <main id="main-holder" >
+        <h1>Login</h1>
+        <!-- Container to hold the error message if username/password is incorrect -->
+        <div id="login-error-msg-holder">
+           <!-- Error message which appears if username/password is incorrect otherwise it's hidden  -->
+          <p id="login-error-msg">Invalid username and/or password</p>
+        </div>
+        <br>
+        <!-- User input form -->
+        <form id="login-form" action="">
+          <!-- Enter email address -->
+          <input type="text"  name="email" class="login-form-field" placeholder="Email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" required>
+          <!-- Enter password -->
+          <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password" required>
+          <!-- Submit login credentials via login button. Activates log() function -->
+          <input type="submit" value="LOGIN" id="login-form-submit" onclick="log()">
+        </form> 
+
+      </main> <!-- End of sub container "main-holder" -->
+    </div>    <!-- End of main container -->
+  </body>
+
+  <script>
+
+  // Declare variable for login form.
+  var loginForm = document.getElementById("login-form");
+  // Declare variable for login button.
+  var loginButton = document.getElementById("login-form-submit");
+  // Delclare variable for login error message.
+  var loginErrorMsg = document.getElementById("login-error-msg");
+
+  // Function to validate login deatils. Activated when "login-form-submit" is clicked
+  function log(){
+    // Declare variable for value inputted into email field.
+    var email = loginForm.email.value;
+    // Declare variable for value inputted into password field.
+    var password = loginForm.password.value;
+    
+    // If email submitted is 'python@planted.ie' and the password is "python3". 
+    if (email === "python@planted.ie" && password === "python3") {
+      // Send an alert saying "You have successfully logged in."
+      alert("You have successfully logged in.");
+      // Reload form.
+      location.reload();
+      // If the email field is blank alert the user.
+    }  else if  (email === "") {
+      alert("Please enter an email address.");
+      // If the password field is blank alert the user.
+    }  else if (password === "") {
+      alert("Please enter a password.");
+    } // In other instances show the "loginErrorMsg" by changing the opacity.
+      else {
+      loginErrorMsg.style.opacity = 1;
+    }
+  }
+  
+
+
+  </script>
+</html>

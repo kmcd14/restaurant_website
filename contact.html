@@ -1,0 +1,278 @@
+<!DOCTYPE html> 
+<html lang="en">
+
+  <head>
+    <!-- Meta tags to tell the browser which character set to use, scale acoss devices, description etc. -->
+    <title>Contact</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Web Dev project">
+    <meta name="author" content="Katie Mc Donald">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to the styling for the navigation bar -->
+    <link href="style.css" rel="stylesheet">
+  </head>
+
+  <style>
+        
+    /* Setting the sizing and font style applied to whole page */
+    * {
+      box-sizing: border-box;  /* Accounts for border and padding */ 
+      font-family: sans-serif;
+    }
+
+
+    /* Styling the section class container, height, space between lines, font size and colour */
+    section {
+      height: 100%;
+      font-family: sans-serif;
+      font-size: 1.25rem;
+      line-height: 110%;
+    }
+
+
+    /* Styling class for left-half of the section container */
+    .left-half {
+      background-color:#ffc9d9;      /* Setting background colour */
+      float: left;                     /* Floats to the left of section container */
+      width: 33.3%;                    /* i.e one third of the section container */
+      height: 100vh;                   /* Setting height */
+      padding-top: 7%;                 /* Adding top padding */
+      line-height: 150%;               /* Setting space between lines */
+      color: black;                  /* Font colour */
+    }
+
+
+    /* Styling class for center of the section container */
+    .center {
+      background-color: #0f4e29;     /* Setting background colour */
+      float: left;                     /* Floats to the left of section container */
+      width: 33.3%;                    /* i.e one third of the section container */
+      height: 100vh;                   /* Setting height */
+      padding-top: 8%;                 /* Adding top padding */
+      color: white                   /* Font colour */
+    }
+
+
+    /* Setting font size for paragraphs in the center */
+    .center p { 
+      font-size: 1rem;
+    }	
+
+
+    /* Styling class for right-half of the section container */
+    .right-half {
+      background-color: #ffc9d9;     /* Setting background colour */
+      float: right;                    /* Floats to the right of section container */
+      width: 33.4%;                    /* i.e one third of the section container */
+      height: 100vh;                   /* Setting height */
+      padding-top: 8%;                 /* Adding top padding to top */
+      padding-left: 2%;                /* Adding top padding to left */
+      padding-right: 2%;               /* Adding top padding to right */
+      color: black;                  /* Font colour */
+    }
+
+
+    /* Setting text alignment for h2 headings in right-half container */
+    .right-half h2 {
+      text-align: left;
+    }	
+
+    
+    /* Setting text alignment for paragraphs in right-half container */
+    .right-half p {
+      text-align: left;
+      font-weight: bold;
+    }	
+
+
+    /* Setting font size for all h3 headings */
+    h3 {
+      font-size: 1.25rem;
+    }
+    
+
+    /* Styling the font size and centering the input class and label class */
+    input, label {
+      display: block;
+    }
+    
+
+    /* Styling the input fields in the reservation form in the left-half */
+    input {
+      display: inline-block;     /* Centering */
+      margin-bottom: 3%;        /* Setting bottom margin */
+    }
+
+
+    /* Setting font size and bolding for all labels */
+    label {
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+
+
+    /* Styling for reserve button */
+    button {
+      padding:0.3em 1.2em;                          /* Adding padding */
+      margin:0 0.1em 0.1em 0;                       /* Adding a margin */
+      height: 5vh;                                  /* Button height */
+      border:0.16em solid rgba(255,255,255,0);    /* Solid border */
+      border-radius:2em;                            /* Gives buttons have curved edges */
+      font-size: 1rem;                              /* Font size */
+      color:#ffffff;                              /* Font colour */
+      background-color: green;                    /* Setting background colour of button */
+      text-align:center;                            /* Centering text */
+      cursor: pointer;                              /* Mouse arrow turns to a pointer over the button */
+    }
+
+    /* When hovering a button class change colour */
+    button:hover {
+     background-color: green;
+      }
+
+
+    /* Setting the width of the message id in the left-half */
+    #message {
+      width: 10vw;
+    }
+        
+
+  </style>  
+      
+  <header>
+    <!-- Navigation menu at the top of the page -->
+    <nav class="myNav">                                 
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="dom.html">DOM</a></li>
+        <li><a href="stats.html">Stats</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <body>
+    <!-- Main container -->
+    <section>
+      <!-- Sub container for the left-half of the main container -->
+      <div class="left-half">
+        <h2>Reservation Enquiry</h2> 
+        <br>
+        <!-- Sub container to hold the reservation-form -->
+        <form id="reservation-form" action="">
+          <div>
+            <!-- Label for name field -->
+            <label for="name">Your Name</label>
+            <!-- Enter name here -->
+            <input type="text" class="txtbox" id="name" name="visitor_name" placeholder="Jane Doe"  required>
+            <br>
+            <!-- Label for email field -->
+            <label for="email">Your E-mail</label>
+            <!-- Enter email here -->
+            <input type="email" class="txtbox" id="email" name="visitor_email" placeholder="jane.doe@email.com" required>
+            <br>
+            <!-- Label for phone number field -->
+            <label for="phone">Your Phone</label>
+            <!-- Enter number here, must match pattern format -->
+            <input type="tel" class="txtbox" id="phone" name="visitor_phone" placeholder="083 111 1111" pattern=(\d{3})-?\s?(\d{3})-?\s?(\d{4}) required> 
+            <br>
+            <!-- Label for number of people field -->
+            <label for="adult">Number of People</label>
+            <!-- Enter number here. minimum you can select is 1 person -->
+            <input type="number" class="txtbox" id="adult" name="total_adults" placeholder="2" min="1" required>
+            <br>
+            <!-- Label for reservation date field -->
+            <label for="checkin-date">Reservation Date</label>
+            <!-- Choose date here. Activates dateChange() function when date is changed -->
+            <input type="date" class="txtbox" id="checkin"  onchange="dateCheck()" required>
+            <br>
+            <!-- Label for messasge field -->
+            <label for="message">Anything Else?</label>
+            <!-- Enter any additional infomation here  -->
+            <textarea id="message" name="visitor_message" placeholder="  Any additional infomation."></textarea>
+            <br>
+            <!-- Submit reservation details via reserve button. Activates reserve() function when clicked -->
+            <button type="submit" onclick="reserve()">Reserve</button>
+          </div>
+        </form>       <!-- End of reservation-form -->
+      </div>          <!-- End of left-half -->
+
+
+
+      <!-- Sub container for the center of the main container -->
+      <div class="center">
+        <h2>Our Opening Times</h2>
+        <br>
+        <h3>Monday</h3>
+        <p>Closed</p>
+        <br>
+        <h3>Tuesday</h3>
+        <p>Closed</p>
+        <br>
+        <h3>Wednesday</h3>
+        <p>5:00pm - 9:00pm</p>
+        <br>
+        <h3>Thursday</h3>
+        <p>5:00pm - 9:00pm</p>
+        <br>
+        <h3>Friday</h3>
+        <p>5:00pm - 9:00pm</p>
+        <br>
+        <h3>Saturday</h3>
+        <p>12:30pm - 3:00pm & 4:00pm - 9:00pm</p>
+        <br>
+        <h3>Sunday</h3>
+        <p>12:30pm - 3:00pm & 4:00pm - 9:00pm</p>     
+      </div>  <!-- End of center -->
+
+
+
+      <!-- Sub container for the center of the right-side of the container -->
+      <div class="right-half">
+        <div>
+          <h2>Contact Information</h2>
+          <br>
+          <p>Phone: 042-939999.</p>
+          <br>
+          <p>E-mail: info@planted.ie.</p>
+          <br>
+          <p>Address: 60 Clanbrassil St, Townparks, Dundalk, Co. Louth, A91 HR65.</p>
+        </div>
+        <br>
+        <br>
+        <!-- The below div displays a google map view of the location, this was generated from maps.ie -->
+        <div style="width: 100%"><iframe width="100%" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=300&amp;hl=en&amp;q=60%20Clanbrassil%20Street,%20Dundalk,%20Co.%20Louth+(Planted)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.gps.ie/marine-gps/"></a></iframe></div>      
+      </div> <!-- End of right-half -->
+    </section>   <!-- End of main section container -->
+  </body>
+
+  <script>
+
+  // Function to check that date chosen is not before todays date. Activated when "checkin" field is changed
+  function dateCheck() {
+    // Declare variable for the users chosen date
+    var UserDate = document.getElementById("checkin").value;
+    // Declare variable for the current date
+    var ToDate = new Date();
+    // If the chosen date is less than todays date
+    if (new Date(UserDate).getTime() < ToDate.getTime()) {
+      // Send an alert stating an invaild date has been chosen
+        alert("Invaild date chosen");
+        return false;
+      }
+      // Otherwise return True i.e. a vaild date  
+      return true;
+    }
+
+  // Function to alert the user they have made a reservation. Activated when "reserve" button is clicked.
+  function reserve() {
+    // Send the user an alert 
+    alert("Thank you, we'll be in touch.")
+  }
+    </script>
+</html>

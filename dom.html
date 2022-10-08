@@ -1,0 +1,414 @@
+<!DOCTYPE html> 
+<html lang="en">
+
+  <head>
+    <!-- Meta tags to tell the browser which character set to use, scale acoss devices, description etc. -->
+    <title>DOM</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Web Dev project">
+    <meta name="author" content="Katie Mc Donald">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to the styling for the navigation bar -->
+    <link href="style.css" rel="stylesheet">
+    
+  </head>
+
+  <style>
+   
+   
+    /* Setting the sizing applied to whole page */
+    * {
+      box-sizing: border-box;  /* Accounts for border and padding */ 
+    }
+
+
+    /* Styling the section class container, height, space between lines, font size and colour */
+    section {
+      color: black;    
+      height: 100%;         
+      font-size: 1rem;
+      line-height: 110%;
+      font-family: sans-serif;
+    }
+
+
+    /* Styling class for left-half of the section container */
+    .left-half {
+      float: left;        /* Floats to the left of section container */
+      width: 33.3%;       /* i.e one third of the section container */
+      height: 100vh;      /* Setting height */
+      padding-top: 8%;    /* Adding top padding */
+	    padding-left: 2%;   /* Adding left padding */
+      padding-right: 2%;  /* Adding right padding */
+    }
+    
+
+     /* Styling class for center section of the section container */
+    .center{
+      float: left;       /* Floats to the left (centre in this case) of section container */
+      width: 33.3%;      /* i.e one third of the section container */
+      height: 100vh;     /* Height of section */
+      padding-top: 8%;   /* Adding top padding */
+    }
+  
+     /* Styling class for right-half section of the section container */
+    .right-half {
+      float: right;       /* Floats to the right of section container */
+      width: 33.3%;       /* i.e one third of the section container */
+      height: 100vh;      /* Height of section */
+      padding-left: 2%;   /* Adding left padding */
+      padding-right: 2%;  /* Adding right padding */
+      padding-top: 8%;    /* Adding top padding */
+    }
+
+
+    /* Styling the font size and centering the input class and label class */
+    input, label{
+      justify-items: center;
+      font-size: 1rem;
+    }
+
+    
+    /* Styling for the buttons */
+    button {
+      padding:0.3em 1.2em;                          /* Adding padding */
+      margin:0 0.1em 0.1em 0;                       /* Adding a margin */
+      height: 5vh;                                  /* Button height */
+      border:0.16em solid rgba(255,255,255,0);    /* Solid border */
+      border-radius:2em;                            /* Gives buttons have curved edges */
+      font-size: 1rem;                              /* Font size */
+      color:#ffffff;                              /* Font colour */
+      text-align:center;                            /* Centering text */
+      cursor: pointer;                              /* Mouse arrow turns to a pointer over the button */
+    }
+
+    /* Styling colour for buttons in the left-half  */
+    .left-half button {
+      background-color: deeppink;
+    }
+
+    /* Styling colour for buttons in the center section */
+    .center button {
+      background-color: rgb(99, 14, 161);
+    }
+
+    /* Styling colour for buttons in the right section */
+    .right-half button {
+      background-color: rgb(14, 123, 110);
+    }
+
+    /* When hovering a button class change colour */
+    button:hover {
+      background-color: green;
+      }
+
+    
+    /* Styling for the droptarget class in the center section */
+    #droptarget {
+      float: left;                  /* Float to left of the center section*/
+      width: 200px;                 /* Setting width */
+      height: 35px;                 /* Setting height */
+      margin: 55px;                 /* Setting margin */
+      padding: 10px;                /* Adding padding */
+      border: 5px solid #f800f0;  /* Adding a solid border */
+    }
+    
+    /* Adding a solid border around the mouse-area in the right-half  */
+    #mouse-area {
+      border: 3px solid rgb(101, 15, 231);
+    }
+
+    /* Adding a margin to the bottom of the left-half */
+    .left-half div {
+      margin-bottom: 7%;
+    }
+
+    /* Adding a margin to the bottom of the right-half */
+    .right-half div {
+      margin-bottom: 15%;
+    }
+
+    /* Adding a margin to the bottom of the center */
+    .center div {
+      margin-bottom: 18%;
+    }
+   
+  </style>
+
+
+
+ <header>
+    <!-- Navigation menu at the top of the page -->
+    <nav class="myNav">                                 
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+		    <li><a href="menu.html">Menu</a></li>
+	    	<li><a href="gallery.html">Gallery</a></li>
+        <li><a href="dom.html">DOM</a></li>
+        <li><a href="stats.html">Stats</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </nav>
+ </header>
+
+  <body>
+    <!-- Main container -->
+    <section>
+      <!-- Sub container for the left-half of the main container -->
+      <div class="left-half">
+        <div>
+          <h1>What is DOM?</h1>
+          <br>
+          <!-- Can change font style of the above paragraph through DOM -->
+          <div id="output-text">
+            <p>"Document Object Model (DOM) is a programming API for HTML and XML documents. It defines the logical structure of documents and the way a document is accessed and manipulated." - W3Schools
+            <br>
+            <br>
+            Play around on this page and enjoy some of the fun with events and DOM offerings.</p>
+          </div>
+          <!-- Label for the drop down menu to select a font style -->
+          <label for="input-font">Change the font style</label>
+          <!-- When a style is changed from the drop down menu activate changeFontStyle() function -->
+          <select id="input-font" class="input" onchange="changeFontStyle(this);">
+            <!-- Default font style -->
+            <option value="sans-serif" selected="selected">
+                sans-serif
+            </option>
+            <!-- The 3 other font style options -->
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Monaco">Monaco</option>
+            <option value="Lucida Handwriting">Lucida Handwriting</option>
+          </select>
+          <!-- Label for the colour picker -->
+          <label for="colourPicker">Color:</label>
+          <!-- Can change the font colour of the above paragraph through DOM. Default value in picker is red-->
+          <input type="color" value="#ff0000" id="colourPicker">   
+          <br>
+          <br>
+        </div>
+        <div>
+          <br>
+          <h3>Tiny Mad Libs</h3>
+          <br>
+          <h5>April showers brings May _____________.</h5>
+          <br>
+          <!-- Enter a noun here to complete the above sentance stores input-->    
+          <input id="input1" placeholder="Enter a noun here">
+          <br>
+          <br>
+          <!-- When clicked activates the text() function -->  
+          <button onclick="text()">enter noun</button>
+          <br>
+          <br>
+          <!-- Where the output of the text() function appears -->  
+          <h3 id="result1"></h3>
+        </div>
+      </div> <!-- End of left-half -->
+
+
+      <!-- Sub container for the center of the main container -->
+      <div class="center">
+        <div>
+          <!-- When clicked activates the change() function --> 
+          <button id="bg" onclick="change()">Click me to change the background colour</button>
+        </div>
+        <div>
+          <!-- When clicked activates the clicked() function --> 
+          <button  id="datetime" onclick="clicked()">What's the time? Click me to find out!</button>
+          <br>
+          <br>
+          <!-- Where the output of the clicked() function appears --> 
+          <h3 id="time"></h3>
+        </div>   
+        <div>
+          <!-- Making the text "Put me in the box" dragable --> 
+          <h5 ondragstart="dragStart(event)" draggable="true" id="dragtarget">Put me in the box</h5>
+          <!-- The box to drag the text into --> 
+          <div id="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <!--The box changes when the above functions are activated -->
+          <p id="box"></p>
+        </div>
+        <div>
+          <h2 id="p2">Delete me</h2>
+          <br>
+          <br>
+          <br>
+          <br>
+          <!-- When clicked activates the rubber() function and removes "Delete me" text--> 
+          <button id="del" onclick="rubber()">What's this do? </button>      
+        </div>  
+      </div> <!-- End of center -->
+
+      
+      <!-- Sub container for the center of the right-side of the container -->
+      <div class="right-half">
+        <div>
+          <!-- When clicked activates changeText() function -->
+          <h2 id="ouch" onclick="changeText()">Click on this text!</h2>
+        </div>
+        <!-- Area which when the mouse pointer is moved over activates the mouseCount() function -->
+        <div id="mouse-area">
+          <div onmousemove="mouseCount()">
+            <h3>Mouseover Score: <br><br> <span id="mouse">Keeping count of your mouseover inside this div</span></h3>
+          </div>  
+        </div>
+        <div>
+          <h4>Important Question</h4>
+          <br>
+          <!-- Input-box to enter your name -->
+          <input id="input2" placeholder="your name here...">
+          <br>
+          <br>
+          <!-- When clicked it submits the input2 and activates the myName() function -->
+          <button onclick="myName()">Ask</button> 
+        </div> 
+        <div>
+          <!-- Reloads the page when clicked-->    
+          <button onclick="location.reload()">reload the page</button>  
+        </div>
+      </div>  <!-- End of right-half -->
+    </section>  <!-- End of main container -->
+  </body>
+
+  <script> 
+
+    // Change the font style 
+    // Function to change the font style of the paragraph on the left-side
+    var changeFontStyle = function(font) {
+      // Get the element with the output-text id and change it's font style
+      document.getElementById("output-text").style.fontFamily = font.value;
+    }
+    
+
+    // Changing the font colour
+    // Declare variable for the colour picker
+    var colourPicker;
+    // Declare variable for the default font colour of the paragraph on the left-side (black)
+    var defaultColor = "#000000";
+     // When the page loads the font colour of the paragraph on the left-side is black
+     // When the colour is changed activate function colourChange()
+     window.addEventListener("load", colourChange, false);
+
+    // Function to get the new colour selected by the user
+    // Activated by the above EventListener
+    function colourChange() {
+      colourPicker = document.querySelector("#colourPicker");
+      colourPicker.value = defaultColor;
+      // Takes the colour chosen by the colour picker and activates updateColour() function
+      colourPicker.addEventListener("input", updateColour, false);
+      colourPicker.select();
+    }
+
+    // Function to change the colour of the paragraph on the left-side to the users selection
+    // Activated by the above EventListener
+    function updateColour(event) {
+      // Declare variable to hold the first element which matches "p"
+      var p = document.querySelector("p");
+      // Apply the new chosen font colour to the found <p> element
+      if (p) {
+        p.style.color = event.target.value;
+      }
+    }
+
+
+    // Tiny Mad Libs
+    // Function to get a value inputed by the user to play mini mad libs
+    function text() {
+        // Declare a variable to hold the input vaule entered in "input1" in the left-side
+        var noun = document.getElementById("input1").value;
+        // Get the element "result" in the left-side and modify the text by adding the noun variable 
+        document.getElementById("result1").innerHTML = "April showers brings May "+ noun + "."; 
+      }
+
+
+    
+    // Changing the background colour
+    // Array of colours
+    var colours = ["red","yellow", "pink", "orange", "lightblue", "purple", "white"];
+    // Declaring variable colour with a vaulue of 0 (i.e. in this case white)
+    var colour = 0;
+    // When button with "bg" id is clicked iterate through the lenght of the colour array with every click
+    // Function to update the background colour of the body tag
+    function change() {
+      // If the colour variable is less than the lenght of the colours array is True increment the vaule (i.e. change to one of the array colours)
+      // If False the colour variable is white
+      colour = colour < colours.length ? ++colour : 0;
+      // Changes the background colour in the body tag to the colour to the current colour of the colour variable
+      document.querySelector("body").style.background = colours[colour];
+    }
+
+
+    // Show current date and time
+    // In the event of the button in the center with the "datetime" id is clicked, clicked() function is activated
+    // Function which gets the user's browsers time zone and date
+    function clicked() {
+      // Get the element with the "time" id and modify the text with the javascript Date() function
+      (document.getElementById('time').innerHTML=Date());
+    }	
+
+
+
+    // Drag and Drop
+    // Function retrieves the data from the center to be dragged ("Put me in the box") and its type i.e text
+    function dragStart(event) {
+      event.dataTransfer.setData("Text", event.target.id);
+    }
+
+    // Function which allows the text to be dropped/dragged into the target box
+    function allowDrop(event) {
+      // Don't take default action
+      event.preventDefault();
+      // When the data is in the target box get the element with the "box" id and updated the the boxes styling
+      document.getElementById("box").innerHTML;
+      event.target.style.border = "4px dotted darkblue";
+    }
+
+    // Function which will allow the text to show inside the "box" element when its dragged and dropped into the target box
+    function drop(event) {
+      // Don't take default action
+      event.preventDefault();
+      // Declare variable data which will show text inside the target box when dropped (i.e. "Put me in the box")
+      var data = event.dataTransfer.getData("Text");
+      event.target.appendChild(document.getElementById(data));
+      document.getElementById("box").innerHTML;
+    }
+
+
+    // Delete me
+    // Function which retrives the element in the center with the "p2" id and removes it when the "What's this do?" button is clicked
+    function rubber() {
+      document.getElementById("p2").remove();
+    }
+
+
+    // Click on this text!
+    // Function which is activated when the text in right-side "Click this text!" is clicked on
+    function changeText() {
+      document.getElementById("ouch").innerHTML = "Ouch!";
+    }
+
+  
+    // Mouseover Score
+    // Declare variable to keep count
+    var count = 0;
+    // Function which updates the count variable by 1 everytime the mouse pointer moves over the div with the "mouse" id
+    function mouseCount() {
+      document.getElementById("mouse").innerHTML = count+=1;
+    }
+   
+
+
+
+    // Important Question
+    // Function to get a value inputed by the user to input2 in right-half and sends an alert when activated by the "Ask" button being clicked
+    function myName(){
+      // Declare variable to hold input2 vaule
+      var name = document.getElementById("input2").value;
+      // Using the variable send the user an alert with modified text to inculde the user input 
+      alert(("result2").innerHTML = "Having fun with DOM" + " " + name + "?"); 
+    }
+
+  </script>
+</html>

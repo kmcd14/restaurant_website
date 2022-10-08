@@ -1,0 +1,278 @@
+<!DOCTYPE html> 
+<html lang="en">
+
+  <head>
+    <!-- Meta tags to tell the browser which character set to use, scale acoss devices, description etc. -->
+    <title>Gallery</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Web Dev project">
+    <meta name="author" content="Katie Mc Donald">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to the styling for the navigation bar -->
+    <link href="style.css" rel="stylesheet">
+  </head>
+
+  <style>
+
+    /* Setting the font style, sizing and background colour */
+    body {
+      box-sizing: border-box;  /* Accounts for border and padding */
+      font-family: sans-serif;
+      background-color: #ffc9d9;
+    }
+
+
+    /* Setting properties for the images */
+    img {
+      width: 30vw;
+      height: 30vw;
+      object-fit: cover;  /* How the image should fit - resize to cover area, helps them be the same size*/
+    }
+
+
+    /* Styling the slideshow-container class which holds the images */
+    .slideshow-container {
+      display: grid;          /* Selecting grid layout */
+      justify-items: center;  /* Center images in the container */
+      padding-top:10%;        /* Adding padding so container is under the navigation bar */
+    }
+
+
+    /* Styling the image numbers (1/10), font-style and size */
+    .numbertext {
+      color: green;
+      font-size: 1.2rem;
+      font-family: sans-serif;
+    }
+    
+
+    /* Stylying for the next and previous class "buttons" (arrows) */
+    .next, .prev {
+      cursor: pointer;                /* Mouse arrow changes to a pointer when scrolled over */
+      position: absolute;             /* Positioned relative to the container */
+      top: 50%;                       /* Top padding to posistion arrows half way down */
+      padding: 1%;                    /* Padding around the arrows */
+      color: rgb(255, 255, 255);    /* Colour of arrows */
+      font-weight: bold;              /* Thicking arrows by bolding */
+      font-size: 2rem;                /* Arrow size*/
+      background-color: #00000078;  /* Background colour around the arrows */
+    
+    }
+
+
+    /* Position the next "button" class to the right */
+    .next {
+      right: 30%;
+    }
+    
+
+    /* Position the prev "button" class to the left */
+    .prev {
+      left: 30%;
+    }
+
+
+    /* When hovering over the next and previous "button" class turns green */
+    .next:hover, .prev:hover  {
+      background-color: green;
+    }
+
+
+    /* Styling for the dot class (one relating to each image) */
+    .dot {
+      cursor: pointer;              /* Mouse arrow changes to a pointer when scrolled over */
+      height: 2vh;                  /* Setting the height */
+      width: 1vw;                   /* Setting the width */
+      background-color: #999999;  /* Setting background colour */
+      border-radius: 50%;           /* Makes them round */
+      display: inline-block;        /* Allows dot class to show on the same line*/
+    }
+
+    
+    /* The active dot (dot relating to image being show ) or hovering over changes colour */
+    .active, .dot:hover {
+      background-color: green;
+    }
+    
+  </style>
+
+
+  <header>
+    <!-- Navigation menu at the top of the page -->
+    <nav class="myNav">                                 
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="dom.html">DOM</a></li>
+        <li><a href="stats.html">Stats</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
+  </header>
+  
+  <body>
+    <!-- Main container -->
+    <div class="slideshow-container">
+      <!-- Holder for image -->
+      <div class="mySlides">
+        <!-- Container to image number -->
+        <div class="numbertext">1 / 10</div>
+          <!-- Image -->
+          <img src="images/gallery-8.jpg">
+      </div>
+
+       <!-- Holder for next image -->
+      <div class="mySlides">
+         <!-- Container to image number -->
+        <div class="numbertext">2 / 10</div>
+          <!-- Image -->
+          <img src="images\gallery.jpg">
+      </div>
+
+      <!-- Holder for next image -->
+      <div class="mySlides ">
+        <!-- Container to image number -->
+        <div class="numbertext">3 / 10</div>
+        <!-- Image number -->
+        <img src="images\gallery-2.jpg">
+      </div>
+
+      <!-- Holder for next image -->
+      <div class="mySlides">
+        <!-- Container to image number -->
+        <div class="numbertext">4 / 10</div>
+        <!-- Image -->
+        <img src="images\gallery-3.jpg">
+      </div>
+
+      <!-- Holder for next image -->
+      <div class="mySlides">
+        <!-- Container to image number -->
+        <div class="numbertext">5 / 10</div>
+        <!-- Image -->
+        <img src="images\gallery-4.jpg">
+      </div>
+
+      <!-- Holder for next image -->
+      <div class="mySlides">
+        <!-- Container to image number -->
+        <div class="numbertext">6 / 10</div>
+        <!-- Image number -->
+        <img src="images\gallery-5.jpg">
+      </div>
+
+      <!-- Holder for next image -->
+      <div class="mySlides">
+        <!-- Container for image number -->
+        <div class="numbertext">7 / 10</div>
+        <!-- Image -->
+        <img src="images\gallery-7.jpg">
+      </div>
+
+      <!-- Holder for next image -->
+      <div class="mySlides">
+        <!-- Container for image number -->
+        <div class="numbertext">8 / 10</div>
+        <!-- Image -->
+        <img src="images\gallery-1.jpg"> 
+      </div>
+
+      <!-- Holder for next image -->
+      <div class="mySlides">
+        <!-- Container for image number -->
+        <div class="numbertext">9 / 10</div>
+         <!-- Image -->
+        <img src="images\gallery-9.jpg">
+      </div>
+
+       <!-- Holder for next image -->
+      <div class="mySlides">
+        <!-- Container for image number -->
+        <div class="numbertext">10 / 10</div>
+         <!-- Image -->
+        <img src="images\gallery-10.jpg">
+      </div>
+
+      <br>
+
+      <!-- Next and previous "buttons" -->
+
+      <!-- When clicked activates the function arrows() and go back 1 image -->
+      <a class="prev" onclick="arrows(-1)">&#10094;</a> <!-- left pointing arrow -->
+      <!-- When clicked activates the function arrows() goes forward 1 image -->
+      <a class="next" onclick="arrows(1)">&#10095;</a>  <!-- right pointing arrow -->
+
+    </div>  <!-- End of slideshow-container -->
+
+
+    <!-- Container for the dot(s) which correspond to an image -->
+    <!-- When a dot is clicked go to the corresponding image -->
+    <div>
+      <span class="dot" onclick="dots(1)"></span>
+      <span class="dot" onclick="dots(2)"></span>
+      <span class="dot" onclick="dots(3)"></span>
+      <span class="dot" onclick="dots(4)"></span>
+      <span class="dot" onclick="dots(5)"></span>
+      <span class="dot" onclick="dots(6)"></span>
+      <span class="dot" onclick="dots(7)"></span>
+      <span class="dot" onclick="dots(8)"></span>
+      <span class="dot" onclick="dots(9)"></span>
+      <span class="dot" onclick="dots(10)"></span>
+    </div>
+  </body>
+
+
+  <script>
+    // Idea from https://www.w3schools.com/howto/howto_js_slideshow.asp
+
+    // Declare variable for the image index 
+    var imageIndex = 1;
+      showImage(imageIndex);
+
+    // Function activated when next, prev class is clicked - moves through images (next +1, prev -1, see HTML above). 
+    function arrows(n) {
+      showImage(imageIndex += n);
+    }
+
+    // Function activated when dot class is clicked - moves through images (each dot is demnoted with a number, see HTML above). 
+    function dots(n) {
+      showImage(imageIndex = n);
+    }
+
+    // Function to move through images. Activated when dots are clicked
+    function showImage(n) {
+      // Declare variable for current image
+      var i;
+      // Store "myslide" in slides variable
+      var slides = document.getElementsByClassName("mySlides");
+      // Store current "dot" in dots variable
+      var dots = document.getElementsByClassName("dot");
+
+      // If n is greater than the lenght of slides variable it's index (posisiton) is 1
+      if(n > slides.length) {
+        imageIndex = 1
+      }
+      // If n is greater than 1 the lenght  
+      if(n < 1) {
+        // The variable imageIndex holds the lenght of slides
+        imageIndex = slides.length
+      }
+      // When the variable i is less than the lenght of slides hide the image
+      for(i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      // When the variable i is less than the lenght of dots hide the dot is not active
+      for(i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      
+      // Show image and make the dot active when on current image
+      slides[imageIndex - 1].style.display = "block";
+      dots[imageIndex - 1].className += " active";
+    }
+
+  </script>
+</html>
